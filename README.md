@@ -1,11 +1,11 @@
-A KSP processor that generates a mock class implementing required methods with empty implementation and a factory class.
+A KSP processor that generates a mock class implementing interface required methods with empty implementation.
 
 # Download
 generateMock is available on `mavenCentral()`.
    
 
 # Quick Start
-### 1. Annotated the abstract class with `@GenerateMock`.
+### 1. Annotate the abstract class with `@GenerateMock`.
     ```kotlin
     interface SomeApi {
         fun someFunction1(): String

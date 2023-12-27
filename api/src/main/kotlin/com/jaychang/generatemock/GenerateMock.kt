@@ -1,7 +1,7 @@
 package com.jaychang.generatemock
 
 /**
- * The processor will generate a mock class implementing required methods with empty implementation
+ * The processor will generate a mock class implementing interface required methods with empty implementation
  * which throws [NotMockedException] and a factory class named with Factory suffix(e.g. SomeApiMockFactory).
  *
  * The annotated class must be an abstract class.
