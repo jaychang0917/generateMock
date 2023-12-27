@@ -5,7 +5,7 @@ generateMock is available on `mavenCentral()`.
    
 
 # Quick Start
-1. Annotated the abstract class with `@GenerateMock`.
+### 1. Annotated the abstract class with `@GenerateMock`.
     ```kotlin
     interface SomeApi {
         fun someFunction1(): String
@@ -20,7 +20,7 @@ generateMock is available on `mavenCentral()`.
         }
     }
     ```
-2. Use the Generated factory class.
+### 2. Use the generated factory class.
     ```kotlin
     val someApiMock = SomeApiMockFactory.create()
     someApiMock.someFunction1() // return "some function 1"
