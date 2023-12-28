@@ -16,26 +16,26 @@ plugins {
 }
 ```
 ### 2. Annotate the abstract class with `@GenerateMock`.
-    ```kotlin
-    interface SomeApi {
-        fun someFunction1(): String
-    
-        fun someFunction2(): String
+```kotlin
+interface SomeApi {
+    fun someFunction1(): String
+
+    fun someFunction2(): String
+}
+
+@GenerateMock
+abstract class SomeApiMock : SomeApi {
+    fun someFunction1(): String {
+         return "some function 1"
     }
-    
-    @GenerateMock
-    abstract class SomeApiMock : SomeApi {
-        fun someFunction1(): String {
-             return "some function 1"
-        }
-    }
-    ```
+}
+```
 ### 3. Use the generated factory class.
-    ```kotlin
-    val someApiMock = SomeApiMockFactory.create()
-    someApiMock.someFunction1() // return "some function 1"
-    someApiMock.someFunction2() // throw NotMockedException("The function someFunction2 is not mocked yet.")
-    ```
+```kotlin
+val someApiMock = SomeApiMockFactory.create()
+someApiMock.someFunction1() // return "some function 1"
+someApiMock.someFunction2() // throw NotMockedException("The function someFunction2 is not mocked yet.")
+``` 
  
 # License
 ```
