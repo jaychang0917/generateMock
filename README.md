@@ -2,10 +2,20 @@ A KSP processor that generates a mock class implementing interface required meth
 
 # Download
 generateMock is available on `mavenCentral()`.
-   
+```groovy
+implementation "io.github.jaychang0917:generateMock-api:0.0.1"
+ksp "io.github.jaychang0917:generateMock-compiler:0.0.1"
+```   
 
 # Quick Start
-### 1. Annotate the abstract class with `@GenerateMock`.
+### 1. Apply the KSP plugin. 
+PS: use the compatible KSP version with your current kotlin gradle plugin version
+```groovy
+plugins {
+    id 'com.google.devtools.ksp' version "1.9.21-1.0.15"
+}
+```
+### 2. Annotate the abstract class with `@GenerateMock`.
     ```kotlin
     interface SomeApi {
         fun someFunction1(): String
@@ -20,7 +30,7 @@ generateMock is available on `mavenCentral()`.
         }
     }
     ```
-### 2. Use the generated factory class.
+### 3. Use the generated factory class.
     ```kotlin
     val someApiMock = SomeApiMockFactory.create()
     someApiMock.someFunction1() // return "some function 1"
