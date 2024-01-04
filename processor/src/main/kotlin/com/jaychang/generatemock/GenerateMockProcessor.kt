@@ -53,14 +53,13 @@ class GenerateMockProcessor(
             }
 
             val functionsNeedToImpl = classDeclaration.getAllFunctions().filter { it.isAbstract }
-
-            if (!functionsNeedToImpl.iterator().hasNext()) {
-                logger.info("The annotated class ${classDeclaration.qualifiedName?.asString()} has no functions to be mocked.")
-                return
-            }
+            val propertiesNeedToImpl = classDeclaration.getAllProperties().filter { it.isAbstract() }
 
             val classTypeSpec = TypeSpec.classBuilder(className.simpleName)
                 .superclass(classDeclaration.asType(emptyList()).toTypeName())
+                .addProperties(
+                    propertiesNeedToImpl.map { it.toPropertySpec() }.toList()
+                )
                 .addFunctions(
                     functionsNeedToImpl.map { it.toFunSpec() }.toList()
                 )

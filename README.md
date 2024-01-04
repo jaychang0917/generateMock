@@ -1,10 +1,10 @@
-A KSP processor that generates a mock class implementing interface required methods with empty implementation.
+A KSP processor that generates a mock class implementing interface required properties and methods with empty implementation.
 
 # Download
 generateMock is available on `mavenCentral()`.
 ```groovy
-implementation "io.github.jaychang0917:generateMock-api:0.0.1"
-ksp "io.github.jaychang0917:generateMock-compiler:0.0.1"
+implementation "io.github.jaychang0917:generateMock-api:0.1.0"
+ksp "io.github.jaychang0917:generateMock-compiler:0.1.0"
 ```   
 
 # Quick Start
@@ -18,6 +18,8 @@ plugins {
 ### 2. Annotate the abstract class with `@GenerateMock`.
 ```kotlin
 interface SomeApi {
+    val someProperty: String
+    
     fun someFunction1(): String
 
     fun someFunction2(): String
@@ -35,6 +37,7 @@ abstract class SomeApiMock : SomeApi {
 val someApiMock = SomeApiMockFactory.create()
 someApiMock.someFunction1() // return "some function 1"
 someApiMock.someFunction2() // throw NotMockedException("The function someFunction2 is not mocked yet.")
+someApiMock.someProperty // throw NotMockedException("The property someProperty is not mocked yet.")
 ``` 
  
 # License
