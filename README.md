@@ -3,8 +3,8 @@ A KSP processor that generates a mock class implementing interface required prop
 # Download
 generateMock is available on `mavenCentral()`.
 ```groovy
-implementation "io.github.jaychang0917:generateMock-api:0.1.0"
-ksp "io.github.jaychang0917:generateMock-compiler:0.1.0"
+implementation "io.github.jaychang0917:generateMock-api:0.1.1"
+ksp "io.github.jaychang0917:generateMock-compiler:0.1.1"
 ```   
 
 # Quick Start

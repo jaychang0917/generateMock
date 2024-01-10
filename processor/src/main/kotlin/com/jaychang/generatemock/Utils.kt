@@ -30,7 +30,8 @@ internal fun KSFunctionDeclaration.toFunSpec(): FunSpec {
     }
 
     val notMockedException = ClassName(NotMockedException::class.java.`package`.name, NotMockedException::class.simpleName!!)
-    funSpecBuilder.addStatement("throw %T(%S)", notMockedException, "The function $functionName is not mocked yet.")
+    val targetName = "${this.parentDeclaration?.simpleName?.asString()}.$functionName"
+    funSpecBuilder.addStatement("throw %T(%S)", notMockedException, "The function $targetName is not mocked yet.")
 
     val returnType = returnType?.resolve()?.toTypeName() ?: Unit::class.asTypeName()
     funSpecBuilder.returns(returnType)
@@ -51,7 +52,11 @@ internal fun KSPropertyDeclaration.toPropertySpec(): PropertySpec {
     propertySpecBuilder.mutable(isMutable)
 
     val notMockedException = ClassName(NotMockedException::class.java.`package`.name, NotMockedException::class.simpleName!!)
-    propertySpecBuilder.initializer("throw %T(%S)", notMockedException, "The property $propertyName is not mocked yet.")
+    val targetName = "${this.parentDeclaration?.simpleName?.asString()}.$propertyName"
+    val getter = FunSpec.getterBuilder()
+        .addStatement("throw %T(%S)", notMockedException, "The property $targetName is not mocked yet.")
+        .build()
+    propertySpecBuilder.getter(getter)
 
     return propertySpecBuilder.build()
 }
